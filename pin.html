@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATM - Enter PIN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="atm-machine">
+        <h1>Please Enter Your PIN</h1>
+        <input type="password" id="pin-input" maxlength="4">
+        <button id="submit-pin">Enter</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        // --- Pretend Bank Account Info ---
+        const correctAccountNumber = "12345678";
+        const correctPin = "1234";
+
+        // Read the account number from the "magic notepad"
+        const userAccount = localStorage.getItem("userAccount");
+
+        // Get the HTML elements
+        const pinInput = document.getElementById("pin-input");
+        const submitButton = document.getElementById("submit-pin");
+        const message = document.getElementById("message");
+
+        submitButton.addEventListener("click", function() {
+            // Check if they came from the right page AND if the PIN is correct
+            if (userAccount === correctAccountNumber && pinInput.value === correctPin) {
+                message.textContent = "PIN Accepted!";
+                message.style.color = "green";
+
+                // Wait a second, then go to the balance page
+                setTimeout(function() {
+                    window.location.href = "balance.html";
+                }, 1000);
+
+            } else {
+                message.textContent = "Wrong PIN!";
+                message.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>

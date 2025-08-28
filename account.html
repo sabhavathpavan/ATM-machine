@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATM - Account Number</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="atm-machine">
+        <h1>UNION BANK</h1>
+        <h2>Enter Your Account Number</h2>
+        <input type="text" id="account-input" placeholder="e.g., 12345678">
+        <button id="submit-account">Next</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        // --- Pretend Bank Account Info ---
+        const correctAccountNumber = "12345678";
+
+        // Get the HTML elements
+        const accountInput = document.getElementById("account-input");
+        const submitButton = document.getElementById("submit-account");
+        const message = document.getElementById("message");
+
+        // Listen for a click on the "Next" button
+        submitButton.addEventListener("click", function() {
+            if (accountInput.value === correctAccountNumber) {
+                // IF the account number is correct...
+                message.textContent = "Account number accepted!";
+                message.style.color = "green";
+
+                // Save the account number in the browser's magic notepad
+                localStorage.setItem("userAccount", accountInput.value);
+
+                // Wait a tiny bit, then go to the next page
+                setTimeout(function() {
+                    window.location.href = "pin.html";
+                }, 1000); // 1000 milliseconds = 1 second
+
+            } else {
+                // IF the account number is wrong...
+                message.textContent = "Invalid Account Number.";
+                message.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>

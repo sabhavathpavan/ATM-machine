@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATM - Your Balance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="atm-machine">
+        <h1>Your Account Balance</h1>
+        <h2 id="balance-display">Loading...</h2>
+        <a href="account.html">Start Over</a>
+    </div>
+
+    <script>
+        // --- Pretend Bank Account Info ---
+        const correctAccountNumber = "12345678";
+        const accountBalance = 10500;
+        
+        // Get the HTML element
+        const balanceDisplay = document.getElementById("balance-display");
+        
+        // Read the account number from the "magic notepad"
+        const userAccount = localStorage.getItem("userAccount");
+
+        // Check if the user came from the previous pages correctly
+        if (userAccount === correctAccountNumber) {
+            // If yes, show the balance
+            balanceDisplay.textContent = "$ " + accountBalance;
+            balanceDisplay.style.color = "blue";
+        } else {
+            // If no, show an error
+            balanceDisplay.textContent = "Error! Please start over.";
+            balanceDisplay.style.color = "red";
+        }
+
+        // Clean up the magic notepad for the next user
+        localStorage.removeItem("userAccount");
+    </script>
+</body>
+</html>
